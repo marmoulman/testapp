@@ -12,7 +12,7 @@ namespace testapp.Pages
 
         public void OnGet()
         {
-            Message = "Your application description page.";
+            Message = "C#/ .NET Core test application";
         }
     }
 }

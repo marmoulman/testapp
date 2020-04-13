@@ -1,0 +1,42 @@
+﻿@page "{attributeId:int?}"
+@model testapp.Pages.XNAV.AttributeDetailsModel
+@{
+    ViewData["Title"] = "AttributeDetails";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h2>Tag Details</h2>
+
+<table class="table table-bordered table-striped">
+    <tbody>
+        <tr>
+            <th scope="row">Tag:</th>
+            <td>@Model.Attribute.Name</td>
+        </tr>
+        <tr>
+            <th scope="row">Value (if applicable)</th>
+            <td>@Model.Attribute.Value</td>
+        </tr>
+
+    </tbody>
+</table>
+
+<h2>Products with this Tag:</h2>
+<table class="table table-bordered table-striped">
+    <thead>
+        <th>Manufacturer:</th>
+        <th>Model:</th>
+    </thead>
+    <tbody>
+        @foreach(var product in Model.ProductsAttributes)
+        {
+            <tr>
+                <td>@product.Manufacturer</td>
+                <td>@product.Model</td>
+            </tr>
+        }
+    </tbody>
+</table>
+<a class="btn btn-primary" asp-page="./ConnectProduct">Connect Tag to Existing Product</a>
+
+<a class="btn btn-primary" asp-page="./List">Back to List</a>

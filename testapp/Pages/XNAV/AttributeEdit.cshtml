@@ -1,0 +1,23 @@
+﻿@page "{AttributeId:int?}"
+@model testapp.Pages.XNAV.AttributeEditModel
+@{
+    ViewData["Title"] = "AttributeEdit";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h2>Edit Tag</h2>
+
+<form method="post">
+    <input type="hidden" asp-for="Attribute.Id" />
+    <div class="form-group">
+        <label asp-for="Attribute.Name"></label>
+        <input asp-for="Attribute.Name" class="form-control" />
+        <span class="text-danger" asp-validation-for="Attribute.Name"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Attribute.Value"></label>
+        <input asp-for="Attribute.Value" class="form-control" />
+        <span class="text-danger" asp-validation-for="Attribute.Value"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+</form>

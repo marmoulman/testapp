@@ -1,0 +1,106 @@
+﻿@page
+@model testapp.Pages.XNAV.ListModel
+@{
+    ViewData["Title"] = "List";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h2>Products Catalog</h2>
+
+<form method="get">
+    <div class="form-group">
+        <div class="input-group">
+            <input type="search" class="form-control" asp-for="SearchProductTerm" />
+            <span class="input-group-btn">
+                <button class="btn btn-default">
+                    <i class="glyphicon glyphicon-search"></i> 
+                </button>
+            </span>
+        </div>
+    </div>
+</form>
+
+<table class="table table-hover table-striped table-bordered">
+    <thead>
+        <th>Product Manufacturer:</th>
+        <th>Product Model:</th>
+        <th>Details:</th>
+        <th>Edit:</th>
+        <th>Delete</th>
+    </th>
+    @foreach(var product in Model.Products)
+    {
+        <tr>
+            <td>@product.Manufacturer</td>
+            <td>@product.Model</td>
+            <td>
+                <a class="btn btn-lg" asp-page="./Details" asp-route-productId="@product.Id">
+                    <i class="glyphicon glyphicon-zoom-in"></i>
+                </a>
+            </td>
+            <td>
+                <a class="btn btn-lg" asp-page="./Edit" asp-route-productId="@product.Id">
+                    <i class="glyphicon glyphicon-edit"></i>
+                </a>
+            </td>
+            <td>
+                <a class="btn btn-lg" asp-page="./ProductDelete" asp-route-productId="@product.Id">
+                    <i class="glyphicon glyphicon-trash"></i>
+                </a>
+            </td>
+        </tr>
+    }
+</table>
+<a asp-page=".\Edit" class="btn btn-primary">Add New Product</a>
+
+<br />
+<br />
+<h2>Attributes Catalog</h2>
+
+<form method="get">
+    <div class="form-group">
+        <div class="input-group">
+            <input type="search" class="form-control" asp-for="SearchAttributeTerm" />
+            <span class="input-group-btn">
+                <button class="btn btn-default">
+                    <i class="glyphicon glyphicon-search"></i>
+                </button>
+            </span>
+        </div>
+    </div>
+</form>
+
+
+<table class="table table-hover table-striped table-bordered">
+    <thead>
+        <th>Attribute Name:</th>
+        <th>Value (if applicable):</th>
+        <th>Details:</th>
+        <th>Edit:</th>
+        <th>Delete:</th>
+    </thead>
+    @foreach(var attribute in Model.Attributes)
+    {
+        <tr>
+            <td>@attribute.Name</td>
+            <td>@attribute.Value</td>
+            <td>
+                <a class="btn btn-lg" asp-page="./AttributeDetails" asp-route-attributeId="@attribute.Id">
+                    <i class="glyphicon glyphicon-zoom-in"></i>
+                </a>
+            </td>
+            <td>
+                <a class="btn btn-lg" asp-page="./AttributeEdit" asp-route-attributeId="@attribute.Id">
+                    <i class="glyphicon glyphicon-edit"></i>
+                </a>
+            </td>
+            <td>
+                <a class="btn btn-lg" asp-page="./AttributeDelete" asp-route-attributeId="@attribute.Id">
+                    <i class="glyphicon glyphicon-trash"></i>
+                </a>
+            </td>
+        </tr>
+    }
+</table>
+
+<a asp-page=" ./AttributeEdit" class="btn btn-primary">Add New Attribute</a>

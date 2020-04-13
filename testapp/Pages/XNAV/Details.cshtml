@@ -1,0 +1,61 @@
+﻿@page
+@model testapp.Pages.XNAV.DetailsModel
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h2>@Model.Product.Manufacturer @Model.Product.Model</h2>
+<br />
+
+<table class="table table-striped table-bordered">
+    <tbody>
+        <tr>
+            <td class="col-md-1"><strong>Manufacturer:</strong></td>
+            <td class="col-md-6">@Model.Product.Manufacturer</td>
+        </tr>
+        <tr>
+            <td><strong>Model Number:</strong></td>
+            <td>@Model.Product.Model</td>
+        </tr>
+        <tr>
+            <td><strong>Description:</strong></td>
+            <td>@Model.Product.Description</td>
+        </tr>
+        <tr>
+            <td><strong>Price:</strong></td>
+            <td>@Model.Product.Price</td>
+        </tr>
+        <tr>
+            <td><strong>More Information:</strong></td>
+            <td>@Model.Product.Url</td>
+        </tr>
+    </tbody>
+</table>
+
+<a asp-page="./Edit" class="btn btn-primary" asp-route-productId="@Model.Product.Id">Edit</a>
+
+<br />
+<h2>Tags</h2>
+<br />
+
+<table class="table table-striped table-hover table-bordered">
+    <thead class="thead thead-dark">
+        <tr>
+            <th class="col-md-1">Tag</th>
+            <th class="col-md-2">Value</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var att in Model.ProductsAttributes)
+        {
+            <tr>
+                <td>@att.Name</td>
+                <td>@att.Value</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a asp-page="./AttributeEdit" class="btn btn-primary" asp-route-productId="@Model.Product.Id">Add Attribute</a>
